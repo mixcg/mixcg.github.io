@@ -409,7 +409,7 @@
 	</head>
 
 	<body class="b_background4">
-		<audio id="bgm" src="music/bgm0.mp3" autoplay="true" loop="true"></audio>
+		<audio id="bgm" src="css/bgm0.mp3" autoplay="true" loop="true"></audio>
 		<div class="stars"></div>
 		<script id="vs" type="x-shader/x-vertex">
 
@@ -696,7 +696,7 @@
 				$("body").removeClass();
 				$("body").addClass('b_background' + i);
 				$("#bgm")[0].src = "";
-				$("#bgm")[0].src = "music/bgm" + i + ".mp3";
+				$("#bgm")[0].src = "css/bgm" + i + ".mp3";
 				$("#bgm")[0].play();
 
 				if(i > 18) {
