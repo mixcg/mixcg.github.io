@@ -691,7 +691,7 @@
 			});
 			
 			$("#sun").mouseover(function() {
-				i=Math.ceil(Math.random()*17);
+				i=Math.ceil(Math.random()*18);
 				$("#title").css("display", "block");
 				$("body").removeClass();
 				$("body").addClass('b_background' + i);
@@ -699,7 +699,7 @@
 				$("#bgm")[0].src = "music/bgm" + i + ".mp3";
 				$("#bgm")[0].play();
 
-				if(i > 17) {
+				if(i > 18) {
 					i = 0;
 				} else {
 					i = Math.ceil(Math.random()*17);
