@@ -1,0 +1,119 @@
+
+        
+	.chest {
+		width: 100px;
+		height: 100px;
+		left: 10%;
+		position: relative;
+	}
+
+	.heart {
+		position: absolute;
+		z-index: 2;
+		background: linear-gradient(-90deg, #F50A45 0%, #d5093c 40%);
+		animation: beat 0.7s ease 0s infinite normal;
+	}
+
+	.heart.center {
+		background: linear-gradient(-45deg, #B80734 0%, #d5093c 40%);
+	}
+
+	.heart.top {
+		z-index: 3;
+	}
+
+	.side {
+		top: 25px;
+		width: 50px;
+		height: 50px;
+		border-radius: 110px;
+	}
+
+	.center {
+		width: 50px;
+		height: 50px;
+		top: 41.5px;
+		left: 25px;
+		transform: rotateZ(225deg);
+		/*transform: rotate(45deg);*/
+	}
+
+	.left {
+		left: 8px;
+	}
+
+	.right {
+		right: 8px;
+	}
+
+
+	@keyframes beat {
+		0% {
+			transform: scale(1) rotate(225deg);
+			box-shadow:0 0 40px #d5093c;
+		}
+
+		50% {
+			transform: scale(1.1) rotate(225deg);
+			box-shadow:0 0 70px #d5093c;
+		}
+		100% {
+			transform: scale(1) rotate(225deg);
+		box-shadow:0 0 40px #d5093c;
+		}
+	}
+	
+	@keyframes name-beat {
+          0% {
+
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+          
+          100% {
+            
+            transform: scale(1.1);
+          }
+        }
+       
+        /*.heart {
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          top: 5%;
+          left: 7%;
+        }
+        .heart:before,
+        .heart:after {
+          position: absolute;
+          content: "";
+          left: 20px;
+          top: 0;
+          width: 20px;
+          height: 33px;
+          background: #fc2e5a;
+          border-radius: 50px 50px 0 0;
+          transform: rotate(-45deg);
+          transform-origin: 0 100%;
+        }
+        .heart:after {
+          left: 0;
+          transform: rotate(45deg);
+          transform-origin :100% 100%;
+        }
+        .heart1{
+           animation: heart-anim 1.5s linear .4s infinite;
+        }
+        
+        /*.heart1:after, .heart1:before{
+          background-color: #;
+        }*/
+
+       /* @keyframes pounding{
+          0%{ transform: scale(1.5); }
+          100%{ transform: scale(1); }
+        }*/
+        
+        
