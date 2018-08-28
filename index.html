@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/heart.css" />
+		<link rel="stylesheet" href="css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="css/reset.min.css" />
+		<link href="https://fonts.googleapis.com/css?family=Anton|Ranga" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/Style.css" />
+		<link href="https://fonts.googleapis.com/css?family=Cairo|Great+Vibes" rel="stylesheet">
+		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/ThreeWebGL.js"></script>
+		<script type="text/javascript" src="js/ThreeExtras.js"></script>
+		<script type="text/javascript" src="js/Detector.js"></script>
+		<script src="js/stars.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/RequestAnimationFrame.js"></script>
+		<script src="js/star.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/55ac9ea30001ace700000000.js" type="text/javascript"></script>-->
+
+		<style type="text/css">
+			body{
+				background: radial-gradient(200% 100% at bottom center, #0070aa, #0b2570, #000035, #000);
+	  			background: radial-gradient(220% 105% at top center, #000 10%, #000035 40%, #0b2570 65%, #0070aa);
+	  			background-attachment: fixed;
+	  			overflow: hidden;
+
+			}
+			#hcym {
+				width: auto;
+				height: auto;
+				font-family: 'Great Vibes', cursive;
+				font-size: 50px;
+				float: inherit;
+				text-align: center;
+				margin: 0 auto;
+				margin-top: 30px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-webkit-transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+				-o-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+				z-index: 2;
+			}
+			
+			#subject {
+				font-size: 18px;
+				font-family: 'Cairo', sans-serif;
+				font-style: italic;
+				color: deepskyblue;
+				text-align: center;
+				padding-top: 50px;
+			}
+			
+			#subject p{
+				font-family: 'Cairo', sans-serif;
+			}
+			#hcym p {
+				color: #f39c12;
+				/*font-family: 'Cairo', sans-serif;*/
+			}
+			
+			#hcym div {
+				/*font-family: 'Great Vibes', cursive;*/
+				font-weight: bold;
+				/*font-family: 'Anton', sans-serif;*/
+				font-family: 'Ranga', cursive;
+			}
+			
+			h2 {
+				color: orange;
+				font-family: 'Cairo', sans-serif;
+				font-size: 20px;
+			}
+			
+			#info{
+				
+				width: 300px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				color: #CCCCCC;
+				font-family: "微软雅黑";
+				font-size: 12px;
+				position: absolute;
+				top: 95%;
+				left: 50%;
+				-webkit-transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+				-o-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+				z-index: 2;
+			}
+			
+			#sun {
+				background: url("images/sun.png") no-repeat;
+				position: absolute;
+				z-index: 1;
+				top: 30%;
+				margin: 0 auto;
+				height: 200px;
+				width: 200px;
+				right: 35%;
+			}
+			
+			.slideInLeft{
+				width: 122px;
+				height: 65px;
+				color: #f39c12;
+				margin: 0 auto;
+				animate-delay: 1s;
+			}
+			
+			.slideInRight {
+				width: 175px;
+				height: 95px;
+				color: #3498db;
+				margin: 0 auto;
+				animate-delay: 1s;
+			}
+			
+			#fish {
+				width: 50px;
+				height: 50PX;
+				align-content: center;
+				line-height: 50px;
+				color: black;
+				font-family: 'Cairo', sans-serif;
+				margin: 0 auto;
+				font-size: 14px;
+				box-shadow: #9BCD9B;
+			}
+			
+			#mixcg {
+				color: black;
+				font-family: 'Cairo', sans-serif;
+				animation: name-beat 0.7s ease 0s infinite normal;
+				width: 70px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				color: #000000;
+				position: absolute;
+				z-index: 4;
+				top: 6%;
+				left: 7%;
+			}
+			
+			#title {
+				width: 250px;
+				height: 20px;
+				font-size: 25px;
+				color: deepskyblue;
+				margin: 0 auto;
+				font-family: 'Cairo', sans-serif;
+				bottom: 20px;
+				position: absolute;
+				z-index: 2;
+				left: 40%;
+				top: 50px;
+				display: none;
+			}
+			
+			#hclady {
+				color: black;
+				font-family: 'Cairo', sans-serif;
+				animation: name-beat 0.7s ease 0s infinite normal;
+				width: 30px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				color: #000000;
+				position: absolute;
+				z-index: 4;
+				top: 6%;
+				left: 16%;
+			}
+			
+			#tips {
+				width: 200px;
+				height: auto;
+				font-size: 14px;
+				font-family: 'Cairo', sans-serif;
+				color: chartreuse;
+				display: block;
+			}
+			img{
+				background-image: url(images/hc2.jpg);
+				width: 515px;
+			  	height: 380px;
+			  	display: none;
+			  	position: absolute;
+			  	z-index: 1;
+			  	left: 5%;
+			  	top: 7%;
+			  	border-radius: 10px;
+			  	box-shadow: #F09819;
+			  	overflow: hidden;
+			  	background-position: center center;
+			  	background-repeat: no-repeat;
+			  	background-size: cover;
+			  	-webkit-background-size: cover;
+			  	-moz-background-size: cover;
+				
+			}
+			
+			@keyframes rotate {
+	  0% {
+	    transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+	  }
+	  100% {
+	    transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+	  }
+	}
+	.stars {
+	  transform: perspective(500px);
+	  transform-style: preserve-3d;
+	  position: absolute;
+	  bottom: 0;
+	  perspective-origin: 50% 100%;
+	  left: 50%;
+	  animation: rotate 90s infinite linear;
+	}
+
+	.star {
+	  width: 2px;
+	  height: 2px;
+	  background: #F7F7B6;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  transform-origin: 0 0 -300px;
+	  transform: translate3d(0, 0, -300px);
+	  backface-visibility: hidden;
+	}
+
+			
+			.b_background0 {
+				overflow: hidden;
+				/*margin: 0;
+				padding: 0;*/
+				background: #F09819;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #EDDE5D, #F09819);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #EDDE5D, #F09819);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background1 {
+				overflow: hidden;
+				background: #3E5151;
+				background: -webkit-linear-gradient(to right, #DECBA4, #3E5151);
+				background: linear-gradient(to right, #DECBA4, #3E5151);
+			}
+			
+			.b_background2 {
+				overflow: hidden;
+				background: #2980B9;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background3 {
+				overflow: hidden;
+				background: #2980B9;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background4 {
+				overflow: hidden;
+				background: #4B79A1;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #283E51, #4B79A1);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #283E51, #4B79A1);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background5 {
+				background: #f12711;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #f5af19, #f12711);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #f5af19, #f12711);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background6 {
+				background: #e1eec3;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #f05053, #e1eec3);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #f05053, #e1eec3);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background7 {
+				background: #77A1D3;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background8 {
+				background: #E55D87;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #5FC3E4, #E55D87);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #5FC3E4, #E55D87);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background9 {
+				background: #FC354C;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #0ABFBC, #FC354C);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #0ABFBC, #FC354C);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background10 {
+				background: #F2994A;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #F2C94C, #F2994A);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #F2C94C, #F2994A);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background11 {
+				background: #16A085;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #F4D03F, #16A085);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #F4D03F, #16A085);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background12 {
+				background: #FF4E50;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #F9D423, #FF4E50);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background13 {
+				background: #649173;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #DBD5A4, #649173);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #DBD5A4, #649173);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background14 {
+				background: #70e1f5;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #ffd194, #70e1f5);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background15 {
+				background: #005C97;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #363795, #005C97);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #363795, #005C97);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background16 {
+				background: #004FF9;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #FFF94C, #004FF9);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #FFF94C, #004FF9);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			
+			.b_background17 {
+				background: #F0C27B;
+				/* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #4B1248, #F0C27B);
+				/* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #4B1248, #F0C27B);
+				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+		</style>
+	</head>
+
+	<body class="b_background4">
+		<audio id="bgm" src="music/bgm0.mp3" autoplay="true" loop="true"></audio>
+		<div class="stars"></div>
+		<script id="vs" type="x-shader/x-vertex">
+
+			varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }
+
+		</script>
+		<script id="fs" type="x-shader/x-fragment">
+
+			uniform sampler2D map; uniform vec3 fogColor; uniform float fogNear; uniform float fogFar; varying vec2 vUv; void main() { float depth = gl_FragCoord.z / gl_FragCoord.w; float fogFactor = smoothstep( fogNear, fogFar, depth ); gl_FragColor = texture2D( map, vUv ); gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 ); gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor ); }
+
+		</script>
+		<script type="text/javascript">
+			if(!Detector.webgl) Detector.addGetWebGLMessage();
+
+			// Bg gradient
+
+			var canvas = document.createElement('canvas');
+
+			canvas.width = 32;
+
+			canvas.height = window.innerHeight;
+
+			var context = canvas.getContext('2d');
+
+			var gradient = context.createLinearGradient(0, 0, 0, canvas.height);
+
+			gradient.addColorStop(0, "#1e4877");
+
+			gradient.addColorStop(0.5, "#4584b4");
+
+			context.fillStyle = gradient;
+
+			context.fillRect(0, 0, canvas.width, canvas.height);
+
+			//document.body.style.background = 'url(' + canvas.toDataURL('image/png') + ')';
+
+			// Clouds
+
+			var container;
+
+			var camera, scene, renderer, sky, mesh, geometry, material,
+
+				i, h, color, colors = [],
+				sprite, size, x, y, z;
+
+			var mouseX = 0,
+				mouseY = 0;
+
+			var start_time = new Date().getTime();
+
+			var windowHalfX = window.innerWidth / 2;
+
+			var windowHalfY = window.innerHeight / 2;
+
+			init();
+
+			animate();
+
+			function init() {
+
+				container = document.createElement('div');
+
+				document.body.appendChild(container);
+
+				camera = new THREE.Camera(30, window.innerWidth / window.innerHeight, 1, 3000);
+
+				camera.position.z = 6000;
+
+				scene = new THREE.Scene();
+
+				geometry = new THREE.Geometry();
+
+				var texture = THREE.ImageUtils.loadTexture('cloud.png');
+
+				texture.magFilter = THREE.LinearMipMapLinearFilter;
+
+				texture.minFilter = THREE.LinearMipMapLinearFilter;
+
+				var fog = new THREE.Fog(0x4584b4, -100, 3000);
+
+				material = new THREE.MeshShaderMaterial({
+
+					uniforms: {
+
+						"map": {
+							type: "t",
+							value: 2,
+							texture: texture
+						},
+
+						"fogColor": {
+							type: "c",
+							value: fog.color
+						},
+
+						"fogNear": {
+							type: "f",
+							value: fog.near
+						},
+
+						"fogFar": {
+							type: "f",
+							value: fog.far
+						},
+
+					},
+
+					vertexShader: document.getElementById('vs').textContent,
+
+					fragmentShader: document.getElementById('fs').textContent,
+
+					depthTest: false
+
+				});
+
+				var plane = new THREE.Mesh(new THREE.Plane(64, 64));
+
+				for(i = 0; i < 8000; i++) {
+
+					plane.position.x = Math.random() * 1000 - 500;
+
+					plane.position.y = -Math.random() * Math.random() * 200 - 15;
+
+					plane.position.z = i;
+
+					plane.rotation.z = Math.random() * Math.PI;
+
+					plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
+
+					GeometryUtils.merge(geometry, plane);
+
+				}
+
+				mesh = new THREE.Mesh(geometry, material);
+
+				scene.addObject(mesh);
+
+				mesh = new THREE.Mesh(geometry, material);
+
+				mesh.position.z = -8000;
+
+				scene.addObject(mesh);
+
+				renderer = new THREE.WebGLRenderer({
+					antialias: false
+				});
+
+				renderer.setSize(window.innerWidth, window.innerHeight);
+
+				container.appendChild(renderer.domElement);
+
+				document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+				window.addEventListener('resize', onWindowResize, false);
+
+			}
+
+			function onDocumentMouseMove(event) {
+
+				mouseX = (event.clientX - windowHalfX) * 0.25;
+
+				mouseY = (event.clientY - windowHalfY) * 0.15;
+
+			}
+
+			function onWindowResize(event) {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+
+				camera.updateProjectionMatrix();
+
+				renderer.setSize(window.innerWidth, window.innerHeight);
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame(animate);
+
+				render();
+
+			}
+
+			function render() {
+
+				position = ((new Date().getTime() - start_time) * 0.03) % 8000;
+
+				camera.position.x += (mouseX - camera.target.position.x) * 0.01;
+
+				camera.position.y += (-mouseY - camera.target.position.y) * 0.01;
+
+				camera.position.z = -position + 8000;
+
+				camera.target.position.x = camera.position.x;
+
+				camera.target.position.y = camera.position.y;
+
+				camera.target.position.z = camera.position.z - 1000;
+
+				renderer.render(scene, camera);
+
+			}
+		</script>
+		<div id="instructions"></div>
+		<canvas id="rain">Canvas is not supported in your browser</canvas>
+		<div class="animated slideInDown" id="title">About Love, Lost Lover </div>
+
+		<div>
+
+			<!--<div class="heart heart1"><div id="mixcg"></div><div id="hclady"></div></div>-->
+			<div id="mixcg" class='animated slideInLeft'></div>
+			<div class="chest">
+				<div id="tips">try mouseover sun</div>
+				<div class="heart left side top">
+
+				</div>
+				<div class="heart center">
+
+				</div>
+				<div class="heart right side">
+
+				</div>
+
+			</div>
+			<div id="hclady" class='animated slideInRight'></div>
+		</div>
+		<div id="sun"></div>
+		<img  id="lady" />
+		<div id="hcym">
+
+			<div class="animated slideInLeft">Yellow</div>
+			<div class="animated slideInRight">Morning</div>
+			
+			<div class="animated slideInRight" id="fish">
+				<h2>:<~- </h2><h2><h2>
+
+			</div>
+			<div id="subject" class="animated fadeInDown">
+				<p>Sometimes Jesus shared Scripture. But mostly He just shared stories. </p><p>I'm not a relentless wind, but you set off a storm. I dare not gaze into your black fascinating
+				<a onclick="addSong();"> magic eyes</a>, for I will fallen in abyss.</p>
+				<!--My friend asked me about my feelings about secret love. I replied like that I saw a beloved toy. When I had no money to buy, I started to save money. I went to buy and found that the price was increased.when I  harder save money  found it has been already sold to someone else I hope it will not appear in the garbage dump. If I see it, I will still pick it up.-->
+			</div>
+		</div>
+		
+		<div id="info"><strong>wwemixcg@gmail.com</strong></div>
+		<input id="addsong" type='file' onchange="songlist(this);" name='songs' multiple='multiple' style="display: none;" />
+		<script src='js/dat.gui.js'></script>
+		<script src="js/index.js"></script>
+
+		<script type="text/javascript">
+			var i = 0;
+			$("#fish").mouseover(function() {
+
+				$("#mixcg").append("<object class='animated slideInLeft'>MixCG</object>");
+				$("#hclady").append("<object class='animated slideInRight'>HC</object>");
+			});
+
+			$("#fish ").mouseout(function() {
+				$("#mixcg").empty();
+				$("#hclady").empty();
+				$('#lady').addClass('animated fadeOutLeftBig');
+			    setTimeout(function(){
+			    	$("#lady").css("display", "none");
+			        
+			    	$('#lady').removeClass('fadeOutLeftBig');   
+			    }, 1000);
+				
+			});
+			
+			
+			
+			$("#fish").dblclick(function() {
+				$('#lady').addClass('animated fadeInUp');
+			    setTimeout(function(){
+			    	$("#lady").css("display", "block");
+			       // $('#lady').removeClass('fadeInUp');
+			    }, 1000);
+				
+			});
+			
+			$("#sun").mouseover(function() {
+				i=Math.ceil(Math.random()*17);
+				$("#title").css("display", "block");
+				$("body").removeClass();
+				$("body").addClass('b_background' + i);
+				$("#bgm")[0].src = "";
+				$("#bgm")[0].src = "music/bgm" + i + ".mp3";
+				$("#bgm")[0].play();
+
+				if(i > 17) {
+					i = 0;
+				} else {
+					i = Math.ceil(Math.random()*17);
+				}
+			})
+
+			$("#sun").mouseout(function() {
+
+				$("#title").css("display", "none");
+				if(1 == 1) {
+					$("#tips").css("display", "none");
+				}
+
+			})
+
+			function time_range(beginTime, endTime, varTime) {
+				var strb = beginTime.split(":");
+				if(strb.length != 2) {
+					return false;
+				}
+				var stre = endTime.split(":");
+				if(stre.length != 2) {
+					return false;
+				}
+				var strv = varTime.split(":");
+				if(strv.length != 2) {
+					return false;
+				}
+				var b = new Date();
+				var e = new Date();
+				var v = new Date();
+				b.setHours(strb[0]);
+				b.setMinutes(strb[1]);
+				e.setHours(stre[0]);
+				e.setMinutes(stre[1]);
+				v.setHours(strv[0]);
+				v.setMinutes(strv[1]);
+
+				if((v.getTime() - b.getTime() >= 0 && (e.getTime() - v.getTime()) > 0)) {
+					return true;
+				} else {
+					return false;
+				}
+
+			}
+
+			function addSong() {
+				$("#addsong").click();
+			}
+
+			function songlist(file) {
+
+				
+
+			//			 var file = document.getElementById('file');
+			//	        
+			//	        var fileList = file.files;
+
+			//	        for(var i = 0; i < fileList.length; i++) {
+			//				var filePath = file.files[i];
+			//		        var reader = new FileReader();
+			//		        reader.readAsDataURL(filePath);
+			//		        reader.onload = function (e) {
+			//		        	$(".img-cont").append("<div class='imgbox'>"+"<img src="+this.result+">"+"<div class='del' onclick='del(this);' ></div></div>");					
+			//				}
+			//	        }
+			//	        
+			//	       }
+			}
+		</script>
+		<script type="text/javascript">
+			window.onload = function() {
+				var index=Math.ceil(Math.random()*17);
+				$("body").removeClass();
+				$("body").addClass('b_background' + index);
+				$("#bgm")[0].src = "";
+				$("#bgm")[0].src = "music/bgm" + index + ".mp3";
+				$("#bgm")[0].play();
+				$(".dg").css("opacity", "0");
+				$(".dg").css("display","none");
+				
+				var dgdiv=document.getElementsByClassName("dg");
+				dgdiv[0].remove();
+				
+				changeStar();
+				setInterval("changeStar()",600000);
+					
+				
+				
+				//				} else if(time_range("6:00", "12:00", reson)) {
+				//					$("body").addClass('b_background3');
+				//				} else if(time_range("12:00", "16:00", reson)) {
+				//					
+				//				} else if(time_range("16:01", "18:30", reson)) {
+				//					$("body").addClass('b_background3');
+				//				} else if(time_range("18:31", "00:00", reson)) {
+				//					$("body").addClass('b_background4');
+				//				} else {
+				//					alert("xiyule");
+				//				}
+
+			}
+			
+			function changeStar(){
+				console.log(111);
+				var datetime = new Date();
+
+				var reson = (datetime.getHours() + ":" + datetime.getMinutes());
+				console.log(reson);
+					if(time_range("18:00", "24:00", reson)||time_range("24:00", "06:00", reson)) {
+						
+						$("#sun").css("background-image","url(images/moon.png)");
+						
+					}
+			}
+		</script>
+		<script>
+	$(document).ready(function () {
+	    var stars = 800;
+	    var $stars = $('.stars');
+	    var r = 800;
+	    for (var i = 0; i < stars; i++) {
+	        if (window.CP.shouldStopExecution(1)) {
+	            break;
+	        }
+	        var $star = $('<div/>').addClass('star');
+	        $stars.append($star);
+	    }
+	    window.CP.exitedLoop(1);
+	    $('.star').each(function () {
+	        var cur = $(this);
+	        var s = 0.2 + Math.random() * 1;
+	        var curR = r + Math.random() * 300;
+	        cur.css({
+	            transformOrigin: '0 0 ' + curR + 'px',
+	            transform: ' translate3d(0,0,-' + curR + 'px) rotateY(' + Math.random() * 360 + 'deg) rotateX(' + Math.random() * -50 + 'deg) scale(' + s + ',' + s + ')'
+	        });
+	    });
+	});
+
+	</script>
+	</body>
+
+</html>
