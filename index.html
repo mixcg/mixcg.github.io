@@ -1,846 +1,1851 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-	<head>
-		<meta charset="utf-8" />
-		<title></title>
-		<link rel="stylesheet" href="css/heart.css" />
-		<link rel="stylesheet" href="css/animate.min.css">
-		<link rel="stylesheet" type="text/css" href="css/reset.min.css" />
-		<link href="https://fonts.googleapis.com/css?family=Anton|Ranga" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/Style.css" />
-		<link href="https://fonts.googleapis.com/css?family=Cairo|Great+Vibes" rel="stylesheet">
-		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="js/ThreeWebGL.js"></script>
-		<script type="text/javascript" src="js/ThreeExtras.js"></script>
-		<script type="text/javascript" src="js/Detector.js"></script>
-		<script src="js/stars.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="js/RequestAnimationFrame.js"></script>
-		<script src="js/star.js" type="text/javascript" charset="utf-8"></script>
-		<!--<script src="js/55ac9ea30001ace700000000.js" type="text/javascript"></script>-->
-
-		<style type="text/css">
-			body{
-				background: radial-gradient(200% 100% at bottom center, #0070aa, #0b2570, #000035, #000);
-	  			background: radial-gradient(220% 105% at top center, #000 10%, #000035 40%, #0b2570 65%, #0070aa);
-	  			background-attachment: fixed;
-	  			overflow: hidden;
-
-			}
-			#hcym {
-				width: auto;
-				height: auto;
-				font-family: 'Great Vibes', cursive;
-				font-size: 50px;
-				float: inherit;
-				text-align: center;
-				margin: 0 auto;
-				margin-top: 30px;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				-webkit-transform: translate(-50%, -50%);
-				-moz-transform: translate(-50%, -50%);
-				-ms-transform: translate(-50%, -50%);
-				-o-transform: translate(-50%, -50%);
-				transform: translate(-50%, -50%);
-				z-index: 2;
-			}
-			
-			#subject {
-				font-size: 18px;
-				font-family: 'Cairo', sans-serif;
-				font-style: italic;
-				color: deepskyblue;
-				text-align: center;
-				padding-top: 50px;
-			}
-			
-			#subject p{
-				font-family: 'Cairo', sans-serif;
-			}
-			#hcym p {
-				color: #f39c12;
-				/*font-family: 'Cairo', sans-serif;*/
-			}
-			
-			#hcym div {
-				/*font-family: 'Great Vibes', cursive;*/
-				font-weight: bold;
-				/*font-family: 'Anton', sans-serif;*/
-				font-family: 'Ranga', cursive;
-			}
-			
-			h2 {
-				color: orange;
-				font-family: 'Cairo', sans-serif;
-				font-size: 20px;
-			}
-			
-			#info{
-				
-				width: 300px;
-				height: 30px;
-				line-height: 30px;
-				text-align: center;
-				color: #CCCCCC;
-				font-family: "微软雅黑";
-				font-size: 12px;
-				position: absolute;
-				top: 95%;
-				left: 50%;
-				-webkit-transform: translate(-50%, -50%);
-				-moz-transform: translate(-50%, -50%);
-				-ms-transform: translate(-50%, -50%);
-				-o-transform: translate(-50%, -50%);
-				transform: translate(-50%, -50%);
-				z-index: 2;
-			}
-			
-			#sun {
-				background: url("images/sun.png") no-repeat;
-				position: absolute;
-				z-index: 1;
-				top: 30%;
-				margin: 0 auto;
-				height: 200px;
-				width: 200px;
-				right: 35%;
-			}
-			
-			.slideInLeft{
-				width: 122px;
-				height: 65px;
-				color: #f39c12;
-				margin: 0 auto;
-				animate-delay: 1s;
-			}
-			
-			.slideInRight {
-				width: 175px;
-				height: 95px;
-				color: #3498db;
-				margin: 0 auto;
-				animate-delay: 1s;
-			}
-			
-			#fish {
-				width: 50px;
-				height: 50PX;
-				align-content: center;
-				line-height: 50px;
-				color: black;
-				font-family: 'Cairo', sans-serif;
-				margin: 0 auto;
-				font-size: 14px;
-				box-shadow: #9BCD9B;
-			}
-			
-			#mixcg {
-				color: black;
-				font-family: 'Cairo', sans-serif;
-				animation: name-beat 0.7s ease 0s infinite normal;
-				width: 70px;
-				height: 20px;
-				text-align: center;
-				line-height: 20px;
-				color: #000000;
-				position: absolute;
-				z-index: 4;
-				top: 6%;
-				left: 7%;
-			}
-			
-			#title {
-				width: 250px;
-				height: 20px;
-				font-size: 25px;
-				color: deepskyblue;
-				margin: 0 auto;
-				font-family: 'Cairo', sans-serif;
-				bottom: 20px;
-				position: absolute;
-				z-index: 2;
-				left: 40%;
-				top: 50px;
-				display: none;
-			}
-			
-			#hclady {
-				color: black;
-				font-family: 'Cairo', sans-serif;
-				animation: name-beat 0.7s ease 0s infinite normal;
-				width: 30px;
-				height: 20px;
-				text-align: center;
-				line-height: 20px;
-				color: #000000;
-				position: absolute;
-				z-index: 4;
-				top: 6%;
-				left: 16%;
-			}
-			
-			#tips {
-				width: 200px;
-				height: auto;
-				font-size: 14px;
-				font-family: 'Cairo', sans-serif;
-				color: chartreuse;
-				display: block;
-			}
-			img{
-				background-image: url(images/hc2.jpg);
-				width: 515px;
-			  	height: 380px;
-			  	display: none;
-			  	position: absolute;
-			  	z-index: 1;
-			  	left: 5%;
-			  	top: 7%;
-			  	border-radius: 10px;
-			  	box-shadow: #F09819;
-			  	overflow: hidden;
-			  	background-position: center center;
-			  	background-repeat: no-repeat;
-			  	background-size: cover;
-			  	-webkit-background-size: cover;
-			  	-moz-background-size: cover;
-				
-			}
-			
-			@keyframes rotate {
-	  0% {
-	    transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
-	  }
-	  100% {
-	    transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
-	  }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="../dist/output.css"> -->
+    <!-- <link rel="stylesheet" href="./heart.css"> -->
+	
+	<style>
+	/*
+	! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
+	*/
+	
+	/*
+	1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+	2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+	*/
+	
+	*,
+	::before,
+	::after {
+	  box-sizing: border-box;
+	  /* 1 */
+	  border-width: 0;
+	  /* 2 */
+	  border-style: solid;
+	  /* 2 */
+	  border-color: #e5e7eb;
+	  /* 2 */
 	}
-	.stars {
-	  transform: perspective(500px);
-	  transform-style: preserve-3d;
+	
+	::before,
+	::after {
+	  --tw-content: '';
+	}
+	
+	/*
+	1. Use a consistent sensible line-height in all browsers.
+	2. Prevent adjustments of font size after orientation changes in iOS.
+	3. Use a more readable tab size.
+	4. Use the user's configured `sans` font-family by default.
+	*/
+	
+	html {
+	  line-height: 1.5;
+	  /* 1 */
+	  -webkit-text-size-adjust: 100%;
+	  /* 2 */
+	  -moz-tab-size: 4;
+	  /* 3 */
+	  -o-tab-size: 4;
+	     tab-size: 4;
+	  /* 3 */
+	  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	  /* 4 */
+	}
+	
+	/*
+	1. Remove the margin in all browsers.
+	2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+	*/
+	
+	body {
+	  margin: 0;
+	  /* 1 */
+	  line-height: inherit;
+	  /* 2 */
+	}
+	
+	/*
+	1. Add the correct height in Firefox.
+	2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+	3. Ensure horizontal rules are visible by default.
+	*/
+	
+	hr {
+	  height: 0;
+	  /* 1 */
+	  color: inherit;
+	  /* 2 */
+	  border-top-width: 1px;
+	  /* 3 */
+	}
+	
+	/*
+	Add the correct text decoration in Chrome, Edge, and Safari.
+	*/
+	
+	abbr:where([title]) {
+	  -webkit-text-decoration: underline dotted;
+	          text-decoration: underline dotted;
+	}
+	
+	/*
+	Remove the default font size and weight for headings.
+	*/
+	
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+	  font-size: inherit;
+	  font-weight: inherit;
+	}
+	
+	/*
+	Reset links to optimize for opt-in styling instead of opt-out.
+	*/
+	
+	a {
+	  color: inherit;
+	  text-decoration: inherit;
+	}
+	
+	/*
+	Add the correct font weight in Edge and Safari.
+	*/
+	
+	b,
+	strong {
+	  font-weight: bolder;
+	}
+	
+	/*
+	1. Use the user's configured `mono` font family by default.
+	2. Correct the odd `em` font sizing in all browsers.
+	*/
+	
+	code,
+	kbd,
+	samp,
+	pre {
+	  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	  /* 1 */
+	  font-size: 1em;
+	  /* 2 */
+	}
+	
+	/*
+	Add the correct font size in all browsers.
+	*/
+	
+	small {
+	  font-size: 80%;
+	}
+	
+	/*
+	Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+	*/
+	
+	sub,
+	sup {
+	  font-size: 75%;
+	  line-height: 0;
+	  position: relative;
+	  vertical-align: baseline;
+	}
+	
+	sub {
+	  bottom: -0.25em;
+	}
+	
+	sup {
+	  top: -0.5em;
+	}
+	
+	/*
+	1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+	2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+	3. Remove gaps between table borders by default.
+	*/
+	
+	table {
+	  text-indent: 0;
+	  /* 1 */
+	  border-color: inherit;
+	  /* 2 */
+	  border-collapse: collapse;
+	  /* 3 */
+	}
+	
+	/*
+	1. Change the font styles in all browsers.
+	2. Remove the margin in Firefox and Safari.
+	3. Remove default padding in all browsers.
+	*/
+	
+	button,
+	input,
+	optgroup,
+	select,
+	textarea {
+	  font-family: inherit;
+	  /* 1 */
+	  font-size: 100%;
+	  /* 1 */
+	  font-weight: inherit;
+	  /* 1 */
+	  line-height: inherit;
+	  /* 1 */
+	  color: inherit;
+	  /* 1 */
+	  margin: 0;
+	  /* 2 */
+	  padding: 0;
+	  /* 3 */
+	}
+	
+	/*
+	Remove the inheritance of text transform in Edge and Firefox.
+	*/
+	
+	button,
+	select {
+	  text-transform: none;
+	}
+	
+	/*
+	1. Correct the inability to style clickable types in iOS and Safari.
+	2. Remove default button styles.
+	*/
+	
+	button,
+	[type='button'],
+	[type='reset'],
+	[type='submit'] {
+	  -webkit-appearance: button;
+	  /* 1 */
+	  background-color: transparent;
+	  /* 2 */
+	  background-image: none;
+	  /* 2 */
+	}
+	
+	/*
+	Use the modern Firefox focus style for all focusable elements.
+	*/
+	
+	:-moz-focusring {
+	  outline: auto;
+	}
+	
+	/*
+	Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+	*/
+	
+	:-moz-ui-invalid {
+	  box-shadow: none;
+	}
+	
+	/*
+	Add the correct vertical alignment in Chrome and Firefox.
+	*/
+	
+	progress {
+	  vertical-align: baseline;
+	}
+	
+	/*
+	Correct the cursor style of increment and decrement buttons in Safari.
+	*/
+	
+	::-webkit-inner-spin-button,
+	::-webkit-outer-spin-button {
+	  height: auto;
+	}
+	
+	/*
+	1. Correct the odd appearance in Chrome and Safari.
+	2. Correct the outline style in Safari.
+	*/
+	
+	[type='search'] {
+	  -webkit-appearance: textfield;
+	  /* 1 */
+	  outline-offset: -2px;
+	  /* 2 */
+	}
+	
+	/*
+	Remove the inner padding in Chrome and Safari on macOS.
+	*/
+	
+	::-webkit-search-decoration {
+	  -webkit-appearance: none;
+	}
+	
+	/*
+	1. Correct the inability to style clickable types in iOS and Safari.
+	2. Change font properties to `inherit` in Safari.
+	*/
+	
+	::-webkit-file-upload-button {
+	  -webkit-appearance: button;
+	  /* 1 */
+	  font: inherit;
+	  /* 2 */
+	}
+	
+	/*
+	Add the correct display in Chrome and Safari.
+	*/
+	
+	summary {
+	  display: list-item;
+	}
+	
+	/*
+	Removes the default spacing and border for appropriate elements.
+	*/
+	
+	blockquote,
+	dl,
+	dd,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	hr,
+	figure,
+	p,
+	pre {
+	  margin: 0;
+	}
+	
+	fieldset {
+	  margin: 0;
+	  padding: 0;
+	}
+	
+	legend {
+	  padding: 0;
+	}
+	
+	ol,
+	ul,
+	menu {
+	  list-style: none;
+	  margin: 0;
+	  padding: 0;
+	}
+	
+	/*
+	Prevent resizing textareas horizontally by default.
+	*/
+	
+	textarea {
+	  resize: vertical;
+	}
+	
+	/*
+	1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+	2. Set the default placeholder color to the user's configured gray 400 color.
+	*/
+	
+	input::-moz-placeholder, textarea::-moz-placeholder {
+	  opacity: 1;
+	  /* 1 */
+	  color: #9ca3af;
+	  /* 2 */
+	}
+	
+	input::placeholder,
+	textarea::placeholder {
+	  opacity: 1;
+	  /* 1 */
+	  color: #9ca3af;
+	  /* 2 */
+	}
+	
+	/*
+	Set the default cursor for buttons.
+	*/
+	
+	button,
+	[role="button"] {
+	  cursor: pointer;
+	}
+	
+	/*
+	Make sure disabled buttons don't get the pointer cursor.
+	*/
+	
+	:disabled {
+	  cursor: default;
+	}
+	
+	/*
+	1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+	2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+	   This can trigger a poorly considered lint error in some tools but is included by design.
+	*/
+	
+	img,
+	svg,
+	video,
+	canvas,
+	audio,
+	iframe,
+	embed,
+	object {
+	  display: block;
+	  /* 1 */
+	  vertical-align: middle;
+	  /* 2 */
+	}
+	
+	/*
+	Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+	*/
+	
+	img,
+	video {
+	  max-width: 100%;
+	  height: auto;
+	}
+	
+	*, ::before, ::after {
+	  --tw-border-spacing-x: 0;
+	  --tw-border-spacing-y: 0;
+	  --tw-translate-x: 0;
+	  --tw-translate-y: 0;
+	  --tw-rotate: 0;
+	  --tw-skew-x: 0;
+	  --tw-skew-y: 0;
+	  --tw-scale-x: 1;
+	  --tw-scale-y: 1;
+	  --tw-pan-x:  ;
+	  --tw-pan-y:  ;
+	  --tw-pinch-zoom:  ;
+	  --tw-scroll-snap-strictness: proximity;
+	  --tw-ordinal:  ;
+	  --tw-slashed-zero:  ;
+	  --tw-numeric-figure:  ;
+	  --tw-numeric-spacing:  ;
+	  --tw-numeric-fraction:  ;
+	  --tw-ring-inset:  ;
+	  --tw-ring-offset-width: 0px;
+	  --tw-ring-offset-color: #fff;
+	  --tw-ring-color: rgb(59 130 246 / 0.5);
+	  --tw-ring-offset-shadow: 0 0 #0000;
+	  --tw-ring-shadow: 0 0 #0000;
+	  --tw-shadow: 0 0 #0000;
+	  --tw-shadow-colored: 0 0 #0000;
+	  --tw-blur:  ;
+	  --tw-brightness:  ;
+	  --tw-contrast:  ;
+	  --tw-grayscale:  ;
+	  --tw-hue-rotate:  ;
+	  --tw-invert:  ;
+	  --tw-saturate:  ;
+	  --tw-sepia:  ;
+	  --tw-drop-shadow:  ;
+	  --tw-backdrop-blur:  ;
+	  --tw-backdrop-brightness:  ;
+	  --tw-backdrop-contrast:  ;
+	  --tw-backdrop-grayscale:  ;
+	  --tw-backdrop-hue-rotate:  ;
+	  --tw-backdrop-invert:  ;
+	  --tw-backdrop-opacity:  ;
+	  --tw-backdrop-saturate:  ;
+	  --tw-backdrop-sepia:  ;
+	}
+	
+	::-webkit-backdrop {
+	  --tw-border-spacing-x: 0;
+	  --tw-border-spacing-y: 0;
+	  --tw-translate-x: 0;
+	  --tw-translate-y: 0;
+	  --tw-rotate: 0;
+	  --tw-skew-x: 0;
+	  --tw-skew-y: 0;
+	  --tw-scale-x: 1;
+	  --tw-scale-y: 1;
+	  --tw-pan-x:  ;
+	  --tw-pan-y:  ;
+	  --tw-pinch-zoom:  ;
+	  --tw-scroll-snap-strictness: proximity;
+	  --tw-ordinal:  ;
+	  --tw-slashed-zero:  ;
+	  --tw-numeric-figure:  ;
+	  --tw-numeric-spacing:  ;
+	  --tw-numeric-fraction:  ;
+	  --tw-ring-inset:  ;
+	  --tw-ring-offset-width: 0px;
+	  --tw-ring-offset-color: #fff;
+	  --tw-ring-color: rgb(59 130 246 / 0.5);
+	  --tw-ring-offset-shadow: 0 0 #0000;
+	  --tw-ring-shadow: 0 0 #0000;
+	  --tw-shadow: 0 0 #0000;
+	  --tw-shadow-colored: 0 0 #0000;
+	  --tw-blur:  ;
+	  --tw-brightness:  ;
+	  --tw-contrast:  ;
+	  --tw-grayscale:  ;
+	  --tw-hue-rotate:  ;
+	  --tw-invert:  ;
+	  --tw-saturate:  ;
+	  --tw-sepia:  ;
+	  --tw-drop-shadow:  ;
+	  --tw-backdrop-blur:  ;
+	  --tw-backdrop-brightness:  ;
+	  --tw-backdrop-contrast:  ;
+	  --tw-backdrop-grayscale:  ;
+	  --tw-backdrop-hue-rotate:  ;
+	  --tw-backdrop-invert:  ;
+	  --tw-backdrop-opacity:  ;
+	  --tw-backdrop-saturate:  ;
+	  --tw-backdrop-sepia:  ;
+	}
+	
+	::backdrop {
+	  --tw-border-spacing-x: 0;
+	  --tw-border-spacing-y: 0;
+	  --tw-translate-x: 0;
+	  --tw-translate-y: 0;
+	  --tw-rotate: 0;
+	  --tw-skew-x: 0;
+	  --tw-skew-y: 0;
+	  --tw-scale-x: 1;
+	  --tw-scale-y: 1;
+	  --tw-pan-x:  ;
+	  --tw-pan-y:  ;
+	  --tw-pinch-zoom:  ;
+	  --tw-scroll-snap-strictness: proximity;
+	  --tw-ordinal:  ;
+	  --tw-slashed-zero:  ;
+	  --tw-numeric-figure:  ;
+	  --tw-numeric-spacing:  ;
+	  --tw-numeric-fraction:  ;
+	  --tw-ring-inset:  ;
+	  --tw-ring-offset-width: 0px;
+	  --tw-ring-offset-color: #fff;
+	  --tw-ring-color: rgb(59 130 246 / 0.5);
+	  --tw-ring-offset-shadow: 0 0 #0000;
+	  --tw-ring-shadow: 0 0 #0000;
+	  --tw-shadow: 0 0 #0000;
+	  --tw-shadow-colored: 0 0 #0000;
+	  --tw-blur:  ;
+	  --tw-brightness:  ;
+	  --tw-contrast:  ;
+	  --tw-grayscale:  ;
+	  --tw-hue-rotate:  ;
+	  --tw-invert:  ;
+	  --tw-saturate:  ;
+	  --tw-sepia:  ;
+	  --tw-drop-shadow:  ;
+	  --tw-backdrop-blur:  ;
+	  --tw-backdrop-brightness:  ;
+	  --tw-backdrop-contrast:  ;
+	  --tw-backdrop-grayscale:  ;
+	  --tw-backdrop-hue-rotate:  ;
+	  --tw-backdrop-invert:  ;
+	  --tw-backdrop-opacity:  ;
+	  --tw-backdrop-saturate:  ;
+	  --tw-backdrop-sepia:  ;
+	}
+	
+	.sr-only {
 	  position: absolute;
-	  bottom: 0;
-	  perspective-origin: 50% 100%;
+	  width: 1px;
+	  height: 1px;
+	  padding: 0;
+	  margin: -1px;
+	  overflow: hidden;
+	  clip: rect(0, 0, 0, 0);
+	  white-space: nowrap;
+	  border-width: 0;
+	}
+	
+	.absolute {
+	  position: absolute;
+	}
+	
+	.relative {
+	  position: relative;
+	}
+	
+	.inset-0 {
+	  top: 0px;
+	  right: 0px;
+	  bottom: 0px;
+	  left: 0px;
+	}
+	
+	.inset-y-0 {
+	  top: 0px;
+	  bottom: 0px;
+	}
+	
+	.left-0 {
+	  left: 0px;
+	}
+	
+	.right-0 {
+	  right: 0px;
+	}
+	
+	.top-1\/2 {
+	  top: 50%;
+	}
+	
+	.left-1\/2 {
 	  left: 50%;
-	  animation: rotate 90s infinite linear;
 	}
-
-	.star {
-	  width: 2px;
-	  height: 2px;
-	  background: #F7F7B6;
+	
+	.mx-auto {
+	  margin-left: auto;
+	  margin-right: auto;
+	}
+	
+	.ml-3 {
+	  margin-left: 0.75rem;
+	}
+	
+	.mt-2 {
+	  margin-top: 0.5rem;
+	}
+	
+	.mt-4 {
+	  margin-top: 1rem;
+	}
+	
+	.mb-6 {
+	  margin-bottom: 1.5rem;
+	}
+	
+	.ml-auto {
+	  margin-left: auto;
+	}
+	
+	.mb-4 {
+	  margin-bottom: 1rem;
+	}
+	
+	.ml-4 {
+	  margin-left: 1rem;
+	}
+	
+	.block {
+	  display: block;
+	}
+	
+	.flex {
+	  display: flex;
+	}
+	
+	.inline-flex {
+	  display: inline-flex;
+	}
+	
+	.hidden {
+	  display: none;
+	}
+	
+	.h-16 {
+	  height: 4rem;
+	}
+	
+	.h-6 {
+	  height: 1.5rem;
+	}
+	
+	.h-8 {
+	  height: 2rem;
+	}
+	
+	.h-32 {
+	  height: 8rem;
+	}
+	
+	.h-full {
+	  height: 100%;
+	}
+	
+	.h-9 {
+	  height: 2.25rem;
+	}
+	
+	.h-52 {
+	  height: 13rem;
+	}
+	
+	.h-48 {
+	  height: 12rem;
+	}
+	
+	.min-h-screen {
+	  min-height: 100vh;
+	}
+	
+	.w-6 {
+	  width: 1.5rem;
+	}
+	
+	.w-auto {
+	  width: auto;
+	}
+	
+	.w-8 {
+	  width: 2rem;
+	}
+	
+	.w-48 {
+	  width: 12rem;
+	}
+	
+	.w-32 {
+	  width: 8rem;
+	}
+	
+	.w-full {
+	  width: 100%;
+	}
+	
+	.w-9 {
+	  width: 2.25rem;
+	}
+	
+	.w-1\/2 {
+	  width: 50%;
+	}
+	
+	.max-w-7xl {
+	  max-width: 80rem;
+	}
+	
+	.max-w-none {
+	  max-width: none;
+	}
+	
+	.max-w-md {
+	  max-width: 28rem;
+	}
+	
+	.flex-1 {
+	  flex: 1 1 0%;
+	}
+	
+	.flex-none {
+	  flex: none;
+	}
+	
+	.flex-auto {
+	  flex: 1 1 auto;
+	}
+	
+	.flex-shrink-0 {
+	  flex-shrink: 0;
+	}
+	
+	.flex-grow {
+	  flex-grow: 1;
+	}
+	
+	.origin-top-right {
+	  transform-origin: top right;
+	}
+	
+	.-translate-x-1\/2 {
+	  --tw-translate-x: -50%;
+	  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+	}
+	
+	.-translate-y-1\/2 {
+	  --tw-translate-y: -50%;
+	  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+	}
+	
+	.scale-95 {
+	  --tw-scale-x: .95;
+	  --tw-scale-y: .95;
+	  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+	}
+	
+	.scale-100 {
+	  --tw-scale-x: 1;
+	  --tw-scale-y: 1;
+	  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+	}
+	
+	.transform {
+	  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+	}
+	
+	@-webkit-keyframes ping {
+	  75%, 100% {
+	    transform: scale(2);
+	    opacity: 0;
+	  }
+	}
+	
+	@keyframes ping {
+	  75%, 100% {
+	    transform: scale(2);
+	    opacity: 0;
+	  }
+	}
+	
+	.animate-ping {
+	  -webkit-animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+	          animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+	}
+	
+	@-webkit-keyframes spin {
+	  to {
+	    transform: rotate(360deg);
+	  }
+	}
+	
+	@keyframes spin {
+	  to {
+	    transform: rotate(360deg);
+	  }
+	}
+	
+	.animate-spin {
+	  -webkit-animation: spin 1s linear infinite;
+	          animation: spin 1s linear infinite;
+	}
+	
+	.flex-col {
+	  flex-direction: column;
+	}
+	
+	.flex-wrap {
+	  flex-wrap: wrap;
+	}
+	
+	.items-center {
+	  align-items: center;
+	}
+	
+	.items-baseline {
+	  align-items: baseline;
+	}
+	
+	.justify-center {
+	  justify-content: center;
+	}
+	
+	.justify-between {
+	  justify-content: space-between;
+	}
+	
+	.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+	  --tw-space-x-reverse: 0;
+	  margin-right: calc(1rem * var(--tw-space-x-reverse));
+	  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+	}
+	
+	.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+	  --tw-space-y-reverse: 0;
+	  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+	  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+	}
+	
+	.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+	  --tw-space-y-reverse: 0;
+	  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+	  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+	}
+	
+	.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+	  --tw-space-x-reverse: 0;
+	  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+	  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+	}
+	
+	.space-x-3 > :not([hidden]) ~ :not([hidden]) {
+	  --tw-space-x-reverse: 0;
+	  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+	  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
+	}
+	
+	.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+	  --tw-space-y-reverse: 0;
+	  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+	  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+	}
+	
+	.divide-y > :not([hidden]) ~ :not([hidden]) {
+	  --tw-divide-y-reverse: 0;
+	  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+	  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+	}
+	
+	.divide-gray-300\/50 > :not([hidden]) ~ :not([hidden]) {
+	  border-color: rgb(209 213 219 / 0.5);
+	}
+	
+	.overflow-hidden {
+	  overflow: hidden;
+	}
+	
+	.rounded-md {
+	  border-radius: 0.375rem;
+	}
+	
+	.rounded-full {
+	  border-radius: 9999px;
+	}
+	
+	.rounded-xl {
+	  border-radius: 0.75rem;
+	}
+	
+	.rounded-lg {
+	  border-radius: 0.5rem;
+	}
+	
+	.border {
+	  border-width: 1px;
+	}
+	
+	.border-2 {
+	  border-width: 2px;
+	}
+	
+	.border-8 {
+	  border-width: 8px;
+	}
+	
+	.border-dashed {
+	  border-style: dashed;
+	}
+	
+	.border-double {
+	  border-style: double;
+	}
+	
+	.border-gray-300 {
+	  --tw-border-opacity: 1;
+	  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+	}
+	
+	.border-white {
+	  --tw-border-opacity: 1;
+	  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+	}
+	
+	.border-l-rose-50 {
+	  --tw-border-opacity: 1;
+	  border-left-color: rgb(255 241 242 / var(--tw-border-opacity));
+	}
+	
+	.bg-gray-800 {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+	}
+	
+	.bg-gray-900 {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+	}
+	
+	.bg-white {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+	}
+	
+	.bg-gray-100 {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+	}
+	
+	.bg-black {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+	}
+	
+	.bg-gray-50 {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+	}
+	
+	.bg-red-500 {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+	}
+	
+	.bg-red-300 {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+	}
+	
+	.bg-\[url\(\/img\/grid\.svg\)\] {
+	  background-image: url(/img/grid.svg);
+	}
+	
+	.bg-\[url\(\.\.\/img\/grid\.svg\)\] {
+	  background-image: url(../img/grid.svg);
+	}
+	
+	.bg-center {
+	  background-position: center;
+	}
+	
+	.fill-sky-100 {
+	  fill: #e0f2fe;
+	}
+	
+	.stroke-sky-500 {
+	  stroke: #0ea5e9;
+	}
+	
+	.stroke-2 {
+	  stroke-width: 2;
+	}
+	
+	.object-cover {
+	  -o-object-fit: cover;
+	     object-fit: cover;
+	}
+	
+	.p-2 {
+	  padding: 0.5rem;
+	}
+	
+	.p-1 {
+	  padding: 0.25rem;
+	}
+	
+	.p-8 {
+	  padding: 2rem;
+	}
+	
+	.p-6 {
+	  padding: 1.5rem;
+	}
+	
+	.px-2 {
+	  padding-left: 0.5rem;
+	  padding-right: 0.5rem;
+	}
+	
+	.px-3 {
+	  padding-left: 0.75rem;
+	  padding-right: 0.75rem;
+	}
+	
+	.py-2 {
+	  padding-top: 0.5rem;
+	  padding-bottom: 0.5rem;
+	}
+	
+	.py-1 {
+	  padding-top: 0.25rem;
+	  padding-bottom: 0.25rem;
+	}
+	
+	.px-4 {
+	  padding-left: 1rem;
+	  padding-right: 1rem;
+	}
+	
+	.py-6 {
+	  padding-top: 1.5rem;
+	  padding-bottom: 1.5rem;
+	}
+	
+	.px-6 {
+	  padding-left: 1.5rem;
+	  padding-right: 1.5rem;
+	}
+	
+	.py-8 {
+	  padding-top: 2rem;
+	  padding-bottom: 2rem;
+	}
+	
+	.pr-2 {
+	  padding-right: 0.5rem;
+	}
+	
+	.pt-2 {
+	  padding-top: 0.5rem;
+	}
+	
+	.pb-3 {
+	  padding-bottom: 0.75rem;
+	}
+	
+	.pt-6 {
+	  padding-top: 1.5rem;
+	}
+	
+	.pt-10 {
+	  padding-top: 2.5rem;
+	}
+	
+	.pb-8 {
+	  padding-bottom: 2rem;
+	}
+	
+	.pt-8 {
+	  padding-top: 2rem;
+	}
+	
+	.text-center {
+	  text-align: center;
+	}
+	
+	.text-sm {
+	  font-size: 0.875rem;
+	  line-height: 1.25rem;
+	}
+	
+	.text-base {
+	  font-size: 1rem;
+	  line-height: 1.5rem;
+	}
+	
+	.text-lg {
+	  font-size: 1.125rem;
+	  line-height: 1.75rem;
+	}
+	
+	.text-xl {
+	  font-size: 1.25rem;
+	  line-height: 1.75rem;
+	}
+	
+	.text-5xl {
+	  font-size: 3rem;
+	  line-height: 1;
+	}
+	
+	.text-4xl {
+	  font-size: 2.25rem;
+	  line-height: 2.5rem;
+	}
+	
+	.text-3xl {
+	  font-size: 1.875rem;
+	  line-height: 2.25rem;
+	}
+	
+	.font-medium {
+	  font-weight: 500;
+	}
+	
+	.font-semibold {
+	  font-weight: 600;
+	}
+	
+	.font-bold {
+	  font-weight: 700;
+	}
+	
+	.font-thin {
+	  font-weight: 100;
+	}
+	
+	.leading-7 {
+	  line-height: 1.75rem;
+	}
+	
+	.text-gray-400 {
+	  --tw-text-opacity: 1;
+	  color: rgb(156 163 175 / var(--tw-text-opacity));
+	}
+	
+	.text-white {
+	  --tw-text-opacity: 1;
+	  color: rgb(255 255 255 / var(--tw-text-opacity));
+	}
+	
+	.text-gray-300 {
+	  --tw-text-opacity: 1;
+	  color: rgb(209 213 219 / var(--tw-text-opacity));
+	}
+	
+	.text-gray-700 {
+	  --tw-text-opacity: 1;
+	  color: rgb(55 65 81 / var(--tw-text-opacity));
+	}
+	
+	.text-cyan-600 {
+	  --tw-text-opacity: 1;
+	  color: rgb(8 145 178 / var(--tw-text-opacity));
+	}
+	
+	.text-gray-500 {
+	  --tw-text-opacity: 1;
+	  color: rgb(107 114 128 / var(--tw-text-opacity));
+	}
+	
+	.text-gray-600 {
+	  --tw-text-opacity: 1;
+	  color: rgb(75 85 99 / var(--tw-text-opacity));
+	}
+	
+	.text-gray-900 {
+	  --tw-text-opacity: 1;
+	  color: rgb(17 24 39 / var(--tw-text-opacity));
+	}
+	
+	.text-sky-500 {
+	  --tw-text-opacity: 1;
+	  color: rgb(14 165 233 / var(--tw-text-opacity));
+	}
+	
+	.text-cyan-400 {
+	  --tw-text-opacity: 1;
+	  color: rgb(34 211 238 / var(--tw-text-opacity));
+	}
+	
+	.underline {
+	  -webkit-text-decoration-line: underline;
+	          text-decoration-line: underline;
+	}
+	
+	.opacity-0 {
+	  opacity: 0;
+	}
+	
+	.opacity-100 {
+	  opacity: 1;
+	}
+	
+	.shadow-lg {
+	  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+	  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+	}
+	
+	.shadow-xl {
+	  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+	  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+	  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+	}
+	
+	.shadow-2xl {
+	  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+	  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+	  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+	}
+	
+	.ring-1 {
+	  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+	  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+	  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+	}
+	
+	.ring-8 {
+	  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+	  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(8px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+	  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+	}
+	
+	.ring-black {
+	  --tw-ring-opacity: 1;
+	  --tw-ring-color: rgb(0 0 0 / var(--tw-ring-opacity));
+	}
+	
+	.ring-gray-900\/5 {
+	  --tw-ring-color: rgb(17 24 39 / 0.05);
+	}
+	
+	.ring-opacity-5 {
+	  --tw-ring-opacity: 0.05;
+	}
+	
+	.transition {
+	  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+	  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+	  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+	  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	  transition-duration: 150ms;
+	}
+	
+	.duration-100 {
+	  transition-duration: 100ms;
+	}
+	
+	.duration-75 {
+	  transition-duration: 75ms;
+	}
+	
+	.ease-out {
+	  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+	}
+	
+	.ease-in {
+	  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+	}
+	
+	.ease-in-out {
+	  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	
+	.\[mask-image\:linear-gradient\(180deg\2c white\2c rgba\(255\2c 255\2c 255\2c 0\)\)\] {
+	  -webkit-mask-image: linear-gradient(180deg,white,rgba(255,255,255,0));
+	          mask-image: linear-gradient(180deg,white,rgba(255,255,255,0));
+	}
+	
+	.first-letter\:w-full::first-letter {
+	  width: 100%;
+	}
+	
+	.hover\:bg-gray-700:hover {
+	  --tw-bg-opacity: 1;
+	  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+	}
+	
+	.hover\:text-white:hover {
+	  --tw-text-opacity: 1;
+	  color: rgb(255 255 255 / var(--tw-text-opacity));
+	}
+	
+	.hover\:text-sky-600:hover {
+	  --tw-text-opacity: 1;
+	  color: rgb(2 132 199 / var(--tw-text-opacity));
+	}
+	
+	.focus\:outline-none:focus {
+	  outline: 2px solid transparent;
+	  outline-offset: 2px;
+	}
+	
+	.focus\:ring-2:focus {
+	  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+	  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+	  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+	}
+	
+	.focus\:ring-inset:focus {
+	  --tw-ring-inset: inset;
+	}
+	
+	.focus\:ring-white:focus {
+	  --tw-ring-opacity: 1;
+	  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity));
+	}
+	
+	.focus\:ring-offset-2:focus {
+	  --tw-ring-offset-width: 2px;
+	}
+	
+	.focus\:ring-offset-gray-800:focus {
+	  --tw-ring-offset-color: #1f2937;
+	}
+	
+	@media (min-width: 640px) {
+	  .sm\:static {
+	    position: static;
+	  }
+	
+	  .sm\:inset-auto {
+	    top: auto;
+	    right: auto;
+	    bottom: auto;
+	    left: auto;
+	  }
+	
+	  .sm\:mx-auto {
+	    margin-left: auto;
+	    margin-right: auto;
+	  }
+	
+	  .sm\:ml-6 {
+	    margin-left: 1.5rem;
+	  }
+	
+	  .sm\:block {
+	    display: block;
+	  }
+	
+	  .sm\:hidden {
+	    display: none;
+	  }
+	
+	  .sm\:max-w-lg {
+	    max-width: 32rem;
+	  }
+	
+	  .sm\:items-stretch {
+	    align-items: stretch;
+	  }
+	
+	  .sm\:justify-start {
+	    justify-content: flex-start;
+	  }
+	
+	  .sm\:rounded-lg {
+	    border-radius: 0.5rem;
+	  }
+	
+	  .sm\:px-6 {
+	    padding-left: 1.5rem;
+	    padding-right: 1.5rem;
+	  }
+	
+	  .sm\:py-12 {
+	    padding-top: 3rem;
+	    padding-bottom: 3rem;
+	  }
+	
+	  .sm\:px-10 {
+	    padding-left: 2.5rem;
+	    padding-right: 2.5rem;
+	  }
+	
+	  .sm\:pr-0 {
+	    padding-right: 0px;
+	  }
+	}
+	
+	@media (min-width: 768px) {
+	  .md\:flex {
+	    display: flex;
+	  }
+	
+	  .md\:h-auto {
+	    height: auto;
+	  }
+	
+	  .md\:w-48 {
+	    width: 12rem;
+	  }
+	
+	  .md\:rounded-none {
+	    border-radius: 0px;
+	  }
+	
+	  .md\:p-0 {
+	    padding: 0px;
+	  }
+	
+	  .md\:p-8 {
+	    padding: 2rem;
+	  }
+	
+	  .md\:text-left {
+	    text-align: left;
+	  }
+	}
+	
+	@media (min-width: 1024px) {
+	  .lg\:block {
+	    display: block;
+	  }
+	
+	  .lg\:hidden {
+	    display: none;
+	  }
+	
+	  .lg\:px-8 {
+	    padding-left: 2rem;
+	    padding-right: 2rem;
+	  }
+	}
+	
+	
+	body{
+	    margin: 0;
+	    padding: 0;
+	    width: 100vw;
+	    height: 100vh;
+	}
+	
+	#lah {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  flex-grow: 1;
+	}
+	
+	#lah::after {
+	  content: attr(data-text);
 	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  transform-origin: 0 0 -300px;
-	  transform: translate3d(0, 0, -300px);
-	  backface-visibility: hidden;
+	  background-color: #FC4F4F;
+	  border-radius: 10px;
+	  padding: 6px 20px;
+	  font-size: 22px;
+	  cursor: pointer;
+	  color: #fff;
+	  width: max-content;
+	  user-select: none;
+	  transition: transform 100ms ease-in;
 	}
-
-			
-			.b_background0 {
-				overflow: hidden;
-				/*margin: 0;
-				padding: 0;*/
-				background: #F09819;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #EDDE5D, #F09819);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #EDDE5D, #F09819);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background1 {
-				overflow: hidden;
-				background: #3E5151;
-				background: -webkit-linear-gradient(to right, #DECBA4, #3E5151);
-				background: linear-gradient(to right, #DECBA4, #3E5151);
-			}
-			
-			.b_background2 {
-				overflow: hidden;
-				background: #2980B9;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background3 {
-				overflow: hidden;
-				background: #2980B9;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background4 {
-				overflow: hidden;
-				background: #4B79A1;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #283E51, #4B79A1);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #283E51, #4B79A1);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background5 {
-				background: #f12711;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #f5af19, #f12711);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #f5af19, #f12711);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background6 {
-				background: #e1eec3;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #f05053, #e1eec3);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #f05053, #e1eec3);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background7 {
-				background: #77A1D3;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #E684AE, #79CBCA, #77A1D3);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background8 {
-				background: #E55D87;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #5FC3E4, #E55D87);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #5FC3E4, #E55D87);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background9 {
-				background: #FC354C;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #0ABFBC, #FC354C);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #0ABFBC, #FC354C);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background10 {
-				background: #F2994A;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #F2C94C, #F2994A);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #F2C94C, #F2994A);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background11 {
-				background: #16A085;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #F4D03F, #16A085);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #F4D03F, #16A085);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background12 {
-				background: #FF4E50;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #F9D423, #FF4E50);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #F9D423, #FF4E50);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background13 {
-				background: #649173;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #DBD5A4, #649173);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #DBD5A4, #649173);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background14 {
-				background: #70e1f5;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #ffd194, #70e1f5);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background15 {
-				background: #005C97;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #363795, #005C97);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #363795, #005C97);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background16 {
-				background: #004FF9;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #FFF94C, #004FF9);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #FFF94C, #004FF9);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-			
-			.b_background17 {
-				background: #F0C27B;
-				/* fallback for old browsers */
-				background: -webkit-linear-gradient(to right, #4B1248, #F0C27B);
-				/* Chrome 10-25, Safari 5.1-6 */
-				background: linear-gradient(to right, #4B1248, #F0C27B);
-				/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-			}
-		</style>
-	</head>
-
-	<body class="b_background4">
-		<audio id="bgm" src="css/bgm0.mp3" autoplay="true" loop="true"></audio>
-		<div class="stars"></div>
-		<script id="vs" type="x-shader/x-vertex">
-
-			varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 ); }
-
-		</script>
-		<script id="fs" type="x-shader/x-fragment">
-
-			uniform sampler2D map; uniform vec3 fogColor; uniform float fogNear; uniform float fogFar; varying vec2 vUv; void main() { float depth = gl_FragCoord.z / gl_FragCoord.w; float fogFactor = smoothstep( fogNear, fogFar, depth ); gl_FragColor = texture2D( map, vUv ); gl_FragColor.w *= pow( gl_FragCoord.z, 20.0 ); gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor ); }
-
-		</script>
-		<script type="text/javascript">
-			if(!Detector.webgl) Detector.addGetWebGLMessage();
-
-			// Bg gradient
-
-			var canvas = document.createElement('canvas');
-
-			canvas.width = 32;
-
-			canvas.height = window.innerHeight;
-
-			var context = canvas.getContext('2d');
-
-			var gradient = context.createLinearGradient(0, 0, 0, canvas.height);
-
-			gradient.addColorStop(0, "#1e4877");
-
-			gradient.addColorStop(0.5, "#4584b4");
-
-			context.fillStyle = gradient;
-
-			context.fillRect(0, 0, canvas.width, canvas.height);
-
-			//document.body.style.background = 'url(' + canvas.toDataURL('image/png') + ')';
-
-			// Clouds
-
-			var container;
-
-			var camera, scene, renderer, sky, mesh, geometry, material,
-
-				i, h, color, colors = [],
-				sprite, size, x, y, z;
-
-			var mouseX = 0,
-				mouseY = 0;
-
-			var start_time = new Date().getTime();
-
-			var windowHalfX = window.innerWidth / 2;
-
-			var windowHalfY = window.innerHeight / 2;
-
-			init();
-
-			animate();
-
-			function init() {
-
-				container = document.createElement('div');
-
-				document.body.appendChild(container);
-
-				camera = new THREE.Camera(30, window.innerWidth / window.innerHeight, 1, 3000);
-
-				camera.position.z = 6000;
-
-				scene = new THREE.Scene();
-
-				geometry = new THREE.Geometry();
-
-				var texture = THREE.ImageUtils.loadTexture('cloud.png');
-
-				texture.magFilter = THREE.LinearMipMapLinearFilter;
-
-				texture.minFilter = THREE.LinearMipMapLinearFilter;
-
-				var fog = new THREE.Fog(0x4584b4, -100, 3000);
-
-				material = new THREE.MeshShaderMaterial({
-
-					uniforms: {
-
-						"map": {
-							type: "t",
-							value: 2,
-							texture: texture
-						},
-
-						"fogColor": {
-							type: "c",
-							value: fog.color
-						},
-
-						"fogNear": {
-							type: "f",
-							value: fog.near
-						},
-
-						"fogFar": {
-							type: "f",
-							value: fog.far
-						},
-
-					},
-
-					vertexShader: document.getElementById('vs').textContent,
-
-					fragmentShader: document.getElementById('fs').textContent,
-
-					depthTest: false
-
-				});
-
-				var plane = new THREE.Mesh(new THREE.Plane(64, 64));
-
-				for(i = 0; i < 8000; i++) {
-
-					plane.position.x = Math.random() * 1000 - 500;
-
-					plane.position.y = -Math.random() * Math.random() * 200 - 15;
-
-					plane.position.z = i;
-
-					plane.rotation.z = Math.random() * Math.PI;
-
-					plane.scale.x = plane.scale.y = Math.random() * Math.random() * 1.5 + 0.5;
-
-					GeometryUtils.merge(geometry, plane);
-
-				}
-
-				mesh = new THREE.Mesh(geometry, material);
-
-				scene.addObject(mesh);
-
-				mesh = new THREE.Mesh(geometry, material);
-
-				mesh.position.z = -8000;
-
-				scene.addObject(mesh);
-
-				renderer = new THREE.WebGLRenderer({
-					antialias: false
-				});
-
-				renderer.setSize(window.innerWidth, window.innerHeight);
-
-				container.appendChild(renderer.domElement);
-
-				document.addEventListener('mousemove', onDocumentMouseMove, false);
-
-				window.addEventListener('resize', onWindowResize, false);
-
-			}
-
-			function onDocumentMouseMove(event) {
-
-				mouseX = (event.clientX - windowHalfX) * 0.25;
-
-				mouseY = (event.clientY - windowHalfY) * 0.15;
-
-			}
-
-			function onWindowResize(event) {
-
-				camera.aspect = window.innerWidth / window.innerHeight;
-
-				camera.updateProjectionMatrix();
-
-				renderer.setSize(window.innerWidth, window.innerHeight);
-
-			}
-
-			function animate() {
-
-				requestAnimationFrame(animate);
-
-				render();
-
-			}
-
-			function render() {
-
-				position = ((new Date().getTime() - start_time) * 0.03) % 8000;
-
-				camera.position.x += (mouseX - camera.target.position.x) * 0.01;
-
-				camera.position.y += (-mouseY - camera.target.position.y) * 0.01;
-
-				camera.position.z = -position + 8000;
-
-				camera.target.position.x = camera.position.x;
-
-				camera.target.position.y = camera.position.y;
-
-				camera.target.position.z = camera.position.z - 1000;
-
-				renderer.render(scene, camera);
-
-			}
-		</script>
-		<div id="instructions"></div>
-		<canvas id="rain">Canvas is not supported in your browser</canvas>
-		<div class="animated slideInDown" id="title">About Love, Lost Lover </div>
-
-		<div>
-
-			<!--<div class="heart heart1"><div id="mixcg"></div><div id="hclady"></div></div>-->
-			<div id="mixcg" class='animated slideInLeft'></div>
-			<div class="chest">
-				<div id="tips">try mouseover sun</div>
-				<div class="heart left side top">
-
-				</div>
-				<div class="heart center">
-
-				</div>
-				<div class="heart right side">
-
-				</div>
-
-			</div>
-			<div id="hclady" class='animated slideInRight'></div>
-		</div>
-		<div id="sun"></div>
-		<img  id="lady" />
-		<div id="hcym">
-
-			<div class="animated slideInLeft">Yellow</div>
-			<div class="animated slideInRight">Morning</div>
-			
-			<div class="animated slideInRight" id="fish">
-				<h2>:<~- </h2><h2><h2>
-
-			</div>
-			<div id="subject" class="animated fadeInDown">
-				<p>Sometimes Jesus shared Scripture. But mostly He just shared stories. </p><p>I'm not a relentless wind, but you set off a storm. I dare not gaze into your black fascinating
-				<a onclick="addSong();"> magic eyes</a>, for I will fallen in abyss.</p>
-				<!--My friend asked me about my feelings about secret love. I replied like that I saw a beloved toy. When I had no money to buy, I started to save money. I went to buy and found that the price was increased.when I  harder save money  found it has been already sold to someone else I hope it will not appear in the garbage dump. If I see it, I will still pick it up.-->
-			</div>
-		</div>
-		
-		<div id="info"><strong>wwemixcg@gmail.com</strong></div>
-		<input id="addsong" type='file' onchange="songlist(this);" name='songs' multiple='multiple' style="display: none;" />
-		<script src='js/dat.gui.js'></script>
-		<script src="js/index.js"></script>
-
-		<script type="text/javascript">
-			var i = 0;
-			$("#fish").mouseover(function() {
-
-				$("#mixcg").append("<object class='animated slideInLeft'>MixCG</object>");
-				$("#hclady").append("<object class='animated slideInRight'>HC</object>");
-			});
-
-			$("#fish ").mouseout(function() {
-				$("#mixcg").empty();
-				$("#hclady").empty();
-				$('#lady').addClass('animated fadeOutLeftBig');
-			    setTimeout(function(){
-			    	$("#lady").css("display", "none");
-			        
-			    	$('#lady').removeClass('fadeOutLeftBig');   
-			    }, 1000);
-				
-			});
-			
-			
-			
-			$("#fish").dblclick(function() {
-				$('#lady').addClass('animated fadeInUp');
-			    setTimeout(function(){
-			    	$("#lady").css("display", "block");
-			       // $('#lady').removeClass('fadeInUp');
-			    }, 1000);
-				
-			});
-			
-			$("#sun").mouseover(function() {
-				i=Math.ceil(Math.random()*18);
-				$("#title").css("display", "block");
-				$("body").removeClass();
-				$("body").addClass('b_background' + i);
-				$("#bgm")[0].src = "";
-				$("#bgm")[0].src = "css/bgm" + i + ".mp3";
-				$("#bgm")[0].play();
-
-				if(i > 18) {
-					i = 0;
-				} else {
-					i = Math.ceil(Math.random()*17);
-				}
-			})
-
-			$("#sun").mouseout(function() {
-
-				$("#title").css("display", "none");
-				if(1 == 1) {
-					$("#tips").css("display", "none");
-				}
-
-			})
-
-			function time_range(beginTime, endTime, varTime) {
-				var strb = beginTime.split(":");
-				if(strb.length != 2) {
-					return false;
-				}
-				var stre = endTime.split(":");
-				if(stre.length != 2) {
-					return false;
-				}
-				var strv = varTime.split(":");
-				if(strv.length != 2) {
-					return false;
-				}
-				var b = new Date();
-				var e = new Date();
-				var v = new Date();
-				b.setHours(strb[0]);
-				b.setMinutes(strb[1]);
-				e.setHours(stre[0]);
-				e.setMinutes(stre[1]);
-				v.setHours(strv[0]);
-				v.setMinutes(strv[1]);
-
-				if((v.getTime() - b.getTime() >= 0 && (e.getTime() - v.getTime()) > 0)) {
-					return true;
-				} else {
-					return false;
-				}
-
-			}
-
-			function addSong() {
-				$("#addsong").click();
-			}
-
-			function songlist(file) {
-
-				
-
-			//			 var file = document.getElementById('file');
-			//	        
-			//	        var fileList = file.files;
-
-			//	        for(var i = 0; i < fileList.length; i++) {
-			//				var filePath = file.files[i];
-			//		        var reader = new FileReader();
-			//		        reader.readAsDataURL(filePath);
-			//		        reader.onload = function (e) {
-			//		        	$(".img-cont").append("<div class='imgbox'>"+"<img src="+this.result+">"+"<div class='del' onclick='del(this);' ></div></div>");					
-			//				}
-			//	        }
-			//	        
-			//	       }
-			}
-		</script>
-		<script type="text/javascript">
-			window.onload = function() {
-				var index=Math.ceil(Math.random()*17);
-				$("body").removeClass();
-				$("body").addClass('b_background' + index);
-				$("#bgm")[0].src = "";
-				$("#bgm")[0].src = "music/bgm" + index + ".mp3";
-				$("#bgm")[0].play();
-				$(".dg").css("opacity", "0");
-				$(".dg").css("display","none");
-				
-				var dgdiv=document.getElementsByClassName("dg");
-				dgdiv[0].remove();
-				
-				changeStar();
-				setInterval("changeStar()",600000);
-					
-				
-				
-				//				} else if(time_range("6:00", "12:00", reson)) {
-				//					$("body").addClass('b_background3');
-				//				} else if(time_range("12:00", "16:00", reson)) {
-				//					
-				//				} else if(time_range("16:01", "18:30", reson)) {
-				//					$("body").addClass('b_background3');
-				//				} else if(time_range("18:31", "00:00", reson)) {
-				//					$("body").addClass('b_background4');
-				//				} else {
-				//					alert("xiyule");
-				//				}
-
-			}
-			
-			function changeStar(){
-				console.log(111);
-				var datetime = new Date();
-
-				var reson = (datetime.getHours() + ":" + datetime.getMinutes());
-				console.log(reson);
-					if(time_range("18:00", "24:00", reson)||time_range("24:00", "06:00", reson)) {
-						
-						$("#sun").css("background-image","url(images/moon.png)");
-						
-					}
-			}
-		</script>
-		<script>
-	$(document).ready(function () {
-	    var stars = 800;
-	    var $stars = $('.stars');
-	    var r = 800;
-	    for (var i = 0; i < stars; i++) {
-	        if (window.CP.shouldStopExecution(1)) {
-	            break;
-	        }
-	        var $star = $('<div/>').addClass('star');
-	        $stars.append($star);
-	    }
-	    window.CP.exitedLoop(1);
-	    $('.star').each(function () {
-	        var cur = $(this);
-	        var s = 0.2 + Math.random() * 1;
-	        var curR = r + Math.random() * 300;
-	        cur.css({
-	            transformOrigin: '0 0 ' + curR + 'px',
-	            transform: ' translate3d(0,0,-' + curR + 'px) rotateY(' + Math.random() * 360 + 'deg) rotateX(' + Math.random() * -50 + 'deg) scale(' + s + ',' + s + ')'
-	        });
-	    });
-	});
-
-	</script>
-	</body>
+	
+	#lah:active::after { transform: scale(0.9); }
+	
+	.pumping::after {
+	  animation: pumping 100ms ease-in-out infinite;
+	}
+	
+	@keyframes pumping {
+	  50% { transform: scale(0.95); }
+	}
+	
+	.shape {
+	  --size: 8px;
+	  position: absolute;
+	  top: calc(50% - var(--size));
+	  left: calc(50% - var(--size));
+	  width: calc(var(--size) * 2);
+	  height: calc(var(--size) * 2);
+	  animation: popup var(--d) cubic-bezier(.08,.56,.53,.98) forwards;
+	}
+	
+	.square {
+	  border-radius: 4px;
+	  background-color: var(--c);
+	}
+	
+	.circle {
+	  border-radius: 50%;
+	  background-color: var(--c);
+	}
+	
+	.triangle {
+	  width: 0px;
+	  height: 0px;
+	  background-color: none;
+	  border-top: var(--size) solid transparent;
+	  border-bottom: calc(var(--size) * 2) solid var(--c);
+	  border-left: var(--size) solid transparent;
+	  border-right: var(--size) solid transparent;
+	}
+	
+	.heart {
+	  --size: 6px;
+	  background-color: var(--c);
+	}
+	.heart::before, .heart::after {
+	  content: "";
+	  position: absolute;
+	  width: 100%;
+	  height: 100%;
+	  background-color: var(--c);
+	  border-radius: 50%;
+	}
+	.heart::before { left: -50%; }
+	.heart::after { top: -50%; }
+	
+	@keyframes popup {
+	  0% { opacity: 0; }
+	  60% { opacity: 1; }
+	  100% {
+	    opacity: 0;
+	    transform: translate(var(--x), var(--y)) rotate(var(--r));
+	  }
+	}
+	
+	#flyers {
+	    position: absolute;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    z-index: 1;
+	}
+	</style>
+</head>
+
+<body>
+    <!--
+  Welcome to Tailwind Play, the official Tailwind CSS playground!
+
+  Everything here works just like it does when you're running Tailwind locally
+  with a real build pipeline. You can customize your config file, use features
+  like `@apply`, or even add third-party plugins.
+
+  Feel free to play with this example if you're just learning, or trash it and
+  start from scratch if you know enough to be dangerous. Have fun!
+-->
+    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden">
+        <!-- <img src="../img/beams.jpeg" alt=""
+            class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" /> -->
+        <div
+            class="absolute inset-0 bg-[url(../img/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
+        </div>
+        <div style="z-index: 10"
+            class="absolute top-1/2 left-1/2 h-48 w-48 rounded-full -translate-x-1/2 -translate-y-1/2  border-8 border-dashed shadow-2xl bg-red-500">
+            <div id="lah"
+                class="absolute pumping text-white text-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                data-text="方柠" style="letter-spacing: 3px;z-index: 20;">
+            </div>
+            <div class="relative animate-ping rounded-full h-full bg-red-300" style="z-index: 10;"></div>
+        </div>
+    </div>
+    <canvas id='flyers'></canvas>
+    <script>
+//         var w, m, c, C, W, H, HW, HH, r, diameter;
+
+// var a = function () {
+//   document
+//     .getElementsByTagName("body")[0]
+//     .appendChild(document.createElement("canvas"));
+//   w = window;
+//   m = Math;
+//   c = document.getElementsByTagName("canvas")[0];
+//   c.style.background = 'black';
+//   C = c.getContext("2d");
+// };
+
+// var b = function () {
+//   W = c.width = w.innerWidth;
+//   H = c.height = w.innerHeight;
+//   HW = W / 2;
+//   HH = H / 2;
+//   diameter = 20;
+// };
+
+// var f = function (t) {
+//   t /= 3000;
+//   C.clearRect(0, 0, W, H);
+//   C.globalCompositeOperation = 'lighter';
+//   for (var k = 0; k < 3; k++) {
+//     if (k === 0) C.fillStyle = '#FF0000';
+//     if (k === 1) C.fillStyle = '#00FF00';
+//     if (k === 2) C.fillStyle = '#0000FF';
+//     for (i = 0; i < H; i += diameter) {
+//       for (j = 0; j < W / 2; j += diameter) {
+//         var index = i * W + j;
+//         C.globalAlpha = m.tan(index * index - t);
+//         C.fillRect(
+//           m.tan(i * j - m.sin(index + k / 100) + t) * j + HW - diameter / 2,
+//           i,
+//           m.tan(index + i / j + t + k / 100) / 2 * diameter / 2,
+//           m.tan(index * index - t) * diameter / 2
+//         );
+//       }
+//     }
+//   }
+//   r = requestAnimationFrame(f);
+// };
+
+// window.onload = function () {
+//   a();
+//   b();
+//   f();
+//   w.onresize = function () {
+//     cancelAnimationFrame(r);
+//     b();
+//     f();
+//   };
+// };
+        const colors = ['#FC4F4F', '#FFBC80', '#FF9F45', '#F76E11']
+        // const shapes = ['square', 'circle', 'triangle', 'heart']
+        const shapes = ['heart']
+
+        const randomIntBetween = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+        const parent = document.getElementsByClassName('pumping')[0]
+        class Particle {
+            constructor({
+                x,
+                y,
+                rotation,
+                shape,
+                color,
+                size,
+                duration,
+                parent
+            }) {
+                this.x = x
+                this.y = y
+                this.parent = parent
+                this.rotation = rotation
+                this.shape = shape
+                this.color = color
+                this.size = size
+                this.duration = duration
+                this.children = document.createElement('div')
+            }
+
+            draw() {
+                this.children.style.setProperty('--x', this.x + 'px')
+                this.children.style.setProperty('--y', this.y + 'px')
+                this.children.style.setProperty('--r', this.rotation + 'deg')
+                this.children.style.setProperty('--c', this.color)
+                this.children.style.setProperty('--size', this.size + 'px')
+                this.children.style.setProperty('--d', this.duration + 'ms')
+                this.children.className = `shape ${this.shape}`
+                this.parent.append(this.children)
+            }
+
+            animate() {
+                this.draw()
+                const timer = setTimeout(() => {
+                    this.parent.removeChild(this.children)
+                    clearTimeout(timer)
+                }, this.duration)
+            }
+        }
+
+        function animateParticles({
+            total
+        }) {
+            for (let i = 0; i < total; i++) {
+                const particle = new Particle({
+                    x: randomIntBetween(-200, 200),
+                    y: randomIntBetween(-100, -300),
+                    rotation: randomIntBetween(-360 * 5, 360 * 5),
+                    shape: shapes[randomIntBetween(0, shapes.length - 1)],
+                    color: colors[randomIntBetween(0, colors.length - 1)],
+                    size: randomIntBetween(4, 7),
+                    duration: randomIntBetween(400, 800),
+                    parent
+                })
+                particle.animate()
+            }
+        }
+
+        let intervalTimer = setInterval(() => {
+            animateParticles({
+                total: 8
+            })
+        }, 100)
+
+        parent.addEventListener("touchstart", () => {}, false);
+        // parent.addEventListener('click', e => {
+        //     if (intervalTimer) {
+        //         clearInterval(intervalTimer)
+        //         intervalTimer = null
+        //         parent.classList.remove('pumping')
+        //     }
+        //     animateParticles({
+        //         total: 40
+        //     })
+        // })
+
+
+
+
+        var w = flyers.width = window.innerWidth,
+            h = flyers.height = window.innerHeight,
+            ctx = flyers.getContext('2d'),
+
+            opts = {
+                phrases: ["你光彩夺目", "You're the Best", "你摄人心魄",
+                    "Every occasion,\nYou're clever", "A world without You?\nNah", "Keep kicking ass",
+                    "You're better than them,\nwhoever they are", "You're just amazing", "You are,\ntherefore I am",
+                    "方柠"
+                ],
+                balloons: 10,
+                baseVelY: -1,
+                addedVelY: -1,
+                baseVelX: -.25,
+                addedVelX: .5,
+                baseSize: 20,
+                addedSize: 10,
+                baseSizeAdder: 2,
+                addedSizeAdder: 2,
+                baseIncrementer: .01,
+                addedIncrementer: .03,
+                baseHue: -10,
+                addedHue: 30,
+                font: '15px Verdana'
+            },
+
+            cycle = 0,
+            balloons = [];
+
+        ctx.font = opts.font;
+
+        function Balloon() {
+            this.reset();
+        }
+        Balloon.prototype.reset = function () {
+
+            this.size = opts.baseSize + opts.addedSize * Math.random();
+            this.sizeAdder = opts.baseSizeAdder + opts.addedSizeAdder * Math.random();
+            this.incrementer = opts.baseIncrementer + opts.addedIncrementer * Math.random();
+
+            this.tick = 0;
+
+            this.x = Math.random() * w;
+            this.y = h + this.size;
+
+            this.vx = opts.baseVelX + opts.addedVelX * Math.random();
+            this.vy = opts.baseVelY + opts.addedVelY * Math.random();
+
+            this.color = 'hsla(hue,70%,60%,.8)'.replace('hue', opts.baseHue + opts.addedHue * Math.random());
+            this.phrase = opts.phrases[++cycle % opts.phrases.length].split('\n');
+            this.lengths = [];
+
+            for (var i = 0; i < this.phrase.length; ++i)
+                this.lengths.push(-ctx.measureText(this.phrase[i]).width / 2);
+        }
+        Balloon.prototype.step = function () {
+
+            this.tick += this.incrementer;
+            this.x += this.vx;
+            this.y += this.vy;
+
+            var size = this.size + this.sizeAdder * Math.sin(this.tick);
+
+            ctx.lineWidth = size / 40;
+            ctx.strokeStyle = '#eee';
+            ctx.beginPath();
+            ctx.moveTo(this.x, this.y - 2);
+            ctx.lineTo(this.x, this.y + size);
+            ctx.stroke();
+            ctx.fillStyle = this.color;
+
+            ctx.translate(this.x, this.y);
+            ctx.rotate(Math.PI / 4);
+            //ctx.fillRect( -size / 2, -size / 2, size / 2, size / 2 );
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.arc(-size / 2, -size / 2 + size / 4, size / 4, Math.PI / 2, Math.PI * 3 / 2);
+            ctx.arc(-size / 2 + size / 4, -size / 2, size / 4, Math.PI, Math.PI * 2);
+            ctx.lineTo(0, 0);
+            ctx.fill();
+            ctx.rotate(-Math.PI / 4);
+            ctx.translate(-this.x, -this.y);
+
+            ctx.translate(this.x, this.y + size + 15);
+            ctx.scale(size / this.size, size / this.size);
+            ctx.fillStyle = '#eee';
+            for (var i = 0; i < this.phrase.length; ++i)
+                ctx.fillText(this.phrase[i], this.lengths[i], i * 15);
+            ctx.scale(this.size / size, this.size / size);
+            ctx.translate(-this.x, -(this.y + size + 15));
+
+            if (this.y < -size * 3)
+                this.reset();
+
+        }
+
+        function anim() {
+
+            window.requestAnimationFrame(anim);
+
+            ctx.fillStyle = '#4dbb7c';
+            ctx.fillRect(0, 0, w, h);
+
+            if (balloons.length < opts.balloons && Math.random() < .01)
+                balloons.push(new Balloon);
+
+            for (var i = 0; i < balloons.length; ++i)
+                balloons[i].step();
+        }
+        anim();
+    </script>
+</body>
 
 </html>
